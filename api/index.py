@@ -20,4 +20,4 @@ app.add_middleware(
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 # Include routers
-app.include_router(chat.router, prefix="/api")
+app.include_router(chat.router, prefix="/api/v1")

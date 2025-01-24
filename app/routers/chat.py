@@ -1,12 +1,12 @@
 from fastapi import APIRouter, HTTPException
 from app.services.gemini_service import create_chat, get_chat_response
 
-router = APIRouter()
+router = APIRouter(prefix="/chat")
 
 # Store active chat sessions
 chat_sessions = {}
 
-@router.post("/chat/{session_id}")
+@router.post("/{session_id}")
 async def chat(session_id: str, message: str):
     try:
         # Get or create chat session
