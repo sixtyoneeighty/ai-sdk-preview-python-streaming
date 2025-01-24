@@ -2,11 +2,12 @@ import os
 from google import genai
 from google.genai import types
 
-# Configure the client
-client = genai.Client(
-    api_key=os.getenv("GEMINI_API_KEY"),
-    http_options={'api_version': 'v1alpha'}  # Required for thinking model
-)
+def get_client():
+    """Get or create the Gemini client"""
+    return genai.Client(
+        api_key=os.getenv("GEMINI_API_KEY"),
+        http_options={'api_version': 'v1alpha'}  # Required for thinking model
+    )
 
 # Generation config
 GENERATION_CONFIG = types.GenerateContentConfig(
@@ -67,6 +68,7 @@ Remember: Your goal is to be the best Mojo possible - a trusted friend and advis
 
 def create_chat():
     """Create a new chat session"""
+    client = get_client()
     return client.chats.create(
         model="gemini-2.0-flash-thinking-exp",
         config=GENERATION_CONFIG

@@ -16,8 +16,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Initialize Gemini client
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+# Create Gemini client
+client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 # Include routers
 app.include_router(chat.router, prefix="/api")
